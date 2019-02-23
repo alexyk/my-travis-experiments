@@ -1,0 +1,15 @@
+
+
+jobs:
+  include:
+    - stage: stage 1
+      script: echo Stage 1 - Job 1
+      after_script: echo 1 > stage1_job1
+    - script: echo Stage 1 - Job 2
+      after_script: echo 1 > stage1_job2
+    - script: echo Stage 1 - Job 3
+      after_script: echo 1 > stage1_job3
+    - stage: stage 2
+      script: echo Stage 2 - Job 1
+      after_script: echo 1 > stage2_job1
+    
