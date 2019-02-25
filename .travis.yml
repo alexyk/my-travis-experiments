@@ -1,4 +1,9 @@
-
+stages:
+  - stage 2
+  - name: stage 3
+    if: branch = master
+  - name: stage 1
+    if: branch = dev
 
 jobs:
   include:
