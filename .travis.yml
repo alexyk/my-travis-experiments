@@ -4,7 +4,7 @@ jobs:
   include:
     - stage: stage 1
       before_script:
-        - mkdir out/
+        - mkdir -p out/
         - ls -lahtOR
       script: echo Stage 1 - Job 1
       cache:
