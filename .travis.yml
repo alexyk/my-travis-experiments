@@ -1,13 +1,13 @@
 stages:
   - stage 2
-  - name: stage 3
+  - name: stage master
     if: branch = master
-  - name: stage 1
+  - name: stage dev
     if: branch = dev
 
 jobs:
   include:
-    - stage: stage 1
+    - stage: stage dev
       before_script:
         - mkdir -p out/
         - ls -lahtR
@@ -41,7 +41,7 @@ jobs:
         - ls -lRaht
         - cat out/stage2_job1
   
-    - stage: stage 3
+    - stage: stage master
       cache:
         - directories:
           - ./out
