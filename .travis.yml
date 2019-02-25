@@ -27,7 +27,7 @@ jobs:
         - directories:
           - ./out
       before_script:
-        - ls -lahtOR
+        - ls -lahtR
       script: echo Stage 2 - Job 1
       after_script:
         - echo $(date) > out/stage2_job1
