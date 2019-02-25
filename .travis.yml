@@ -20,6 +20,9 @@ jobs:
         - ls -lRahtO
 
     - stage: stage 2
+      env:
+        - env1=$(date)
+        - env2=100
       cache:
         - directories:
           - ./out
@@ -28,7 +31,10 @@ jobs:
       script: echo Stage 2 - Job 1
       after_script:
         - echo $(date) > out/stage2_job1
+        - echo $env1 >> out/stage2_job1
+        - echo $env2 >> out/stage2_job1
         - ls -lRahtO
+        - cat out/stage2_job1
   
     - stage: stage 3
       cache:
