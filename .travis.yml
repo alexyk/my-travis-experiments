@@ -3,25 +3,41 @@
 jobs:
   include:
     - stage: stage 1
-      before_script: ls -l
+      before_script:
+        - mkdir out/
+        - ls -lahtOR
       script: echo Stage 1 - Job 1
+      cache:
+        - directories:
+          - ./out
       after_script:
-        - echo 1 > stage1_job1
-        - ls -l
+        - echo $(date) > stage1_job1
+        - ls -lRahtO
     - before_script: ls -l
       script: echo Stage 1 - Job 2
       after_script: 
-        - echo 1 > stage1_job2
-        - ls -l
+        - echo $(date) > stage1_job2
+        - ls -lRahtO
 
     - stage: stage 2
-      before_script: ls -l
+      cache:
+        - directories:
+          - ./out
+      before_script:
+        - ls -lahtOR
       script: echo Stage 2 - Job 1
-      after_script: echo 1 > stage2_job1
+      after_script:
+        - echo $(date) > out/stage2_job1
+        - ls -lRahtO
   
     - stage: stage 3
-      before_script: ls -l
+      cache:
+        - directories:
+          - ./out
+      before_script:
+        - ls -lahtOR
       script: echo Stage 3 - Job 1
-      after_script: echo 1 > stage3_job1
-      script: ls -l
+      after_script:
+        - echo $(date) > out/stage3_job1
+        - ls -lRahtO
     
