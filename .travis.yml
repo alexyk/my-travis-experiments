@@ -5,19 +5,19 @@ jobs:
     - stage: stage 1
       before_script:
         - mkdir -p out/
-        - ls -lahtOR
+        - ls -lahtR
       script: echo Stage 1 - Job 1
       cache:
         - directories:
           - ./out
       after_script:
         - echo $(date) > stage1_job1
-        - ls -lRahtO
+        - ls -lRaht
     - before_script: ls -l
       script: echo Stage 1 - Job 2
       after_script: 
         - echo $(date) > stage1_job2
-        - ls -lRahtO
+        - ls -lRaht
 
     - stage: stage 2
       env:
@@ -33,7 +33,7 @@ jobs:
         - echo $(date) > out/stage2_job1
         - echo $env1 >> out/stage2_job1
         - echo $env2 >> out/stage2_job1
-        - ls -lRahtO
+        - ls -lRaht
         - cat out/stage2_job1
   
     - stage: stage 3
@@ -41,9 +41,9 @@ jobs:
         - directories:
           - ./out
       before_script:
-        - ls -lahtOR
+        - ls -lahtR
       script: echo Stage 3 - Job 1
       after_script:
         - echo $(date) > out/stage3_job1
-        - ls -lRahtO
+        - ls -lRaht
     
