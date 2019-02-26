@@ -4,7 +4,8 @@ stages:
     if: branch = master1
   - name: stage dev
     if: branch = dev1
-  - other stage
+  - name: other stage
+    if: 1 != 1
 
 jobs:
   include:
@@ -14,6 +15,13 @@ jobs:
         - app_ios=$(tmp=$TRAVIS_BUILD_DIR && tmp=${tmp//\//-} && echo $tmp)
       script:
         - echo $app_ios
+    - name: No 2 - Set 'var2' using 'var1' in 'env' section
+      env:
+        - var1="$TRAVIS_BUILD_DIR - $TRAVIS_BRANCH"
+        - var2="123 - $var1"
+      script:
+        - echo "var1 = $var1"
+        - echo "var2 = $var2"
 
     - stage: stage dev
       before_script:
