@@ -17,7 +17,7 @@ jobs:
         - echo $app_ios
     - name: No 2 - Set 'var2' using 'var1' in 'env' section
       env:
-        - var1="$TRAVIS_BUILD_DIR - $TRAVIS_BRANCH"
+        - var1=$(tmp="$TRAVIS_BUILD_DIR - $TRAVIS_BRANCH" && tmp=${tmp//\//-} && echo $tmp)
         - var2="123 - $var1"
       script:
         - echo "var1 = $var1"
