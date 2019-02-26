@@ -1,9 +1,9 @@
 stages:
-  - stage 2
   - name: stage master
     if: branch = master
   - name: stage dev
     if: branch = dev
+  - other stage
 
 jobs:
   include:
@@ -24,7 +24,7 @@ jobs:
         - echo $(date) > stage1_job2
         - ls -lRaht
 
-    - stage: stage 2
+    - stage: other stage
       env:
         - env1=$(date)
         - env2=100
@@ -35,8 +35,12 @@ jobs:
         - ls -lahtR
       script: echo Stage 2 - Job 1
       after_script:
+        - "var1='hello there'"
         - echo $(date) > out/stage2_job1
         - echo $env1 >> out/stage2_job1
+        - "echo \"Var1: $var1\""
+        - "var1=123"
+        - "echo \"Var1: $var1\" (take 2)"
         - echo $env2 >> out/stage2_job1
         - ls -lRaht
         - cat out/stage2_job1
