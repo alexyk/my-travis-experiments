@@ -40,7 +40,7 @@ jobs:
         - echo $env1 >> out/stage2_job1
         - "echo \"Var1: $var1\""
         - "var1=123"
-        - "echo \"Var1: $var1\" (take 2)"
+        - "echo \"Var1: $var1 (take 2)\""
         - echo $env2 >> out/stage2_job1
         - ls -lRaht
         - cat out/stage2_job1
