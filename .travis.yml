@@ -1,12 +1,20 @@
 stages:
+  - experiments
   - name: stage master
-    if: branch = master
+    if: branch = master1
   - name: stage dev
-    if: branch = dev
+    if: branch = dev1
   - other stage
 
 jobs:
   include:
+    - stage: experimpents
+      name: No 1 - Set env with replaced string
+      env:
+        - app_ios=$(tmp=$TRAVIS_BUILD_DIR && tmp=${tmp//\//-} && echo $tmp)
+      script:
+        - echo $app_ios
+
     - stage: stage dev
       before_script:
         - mkdir -p out/
